@@ -65,11 +65,12 @@ export function useMatchHistory(playerName: string) {
           matchHistory: [],
         };
 
+        // MatchRecord shape was updated to use winner/loser
         const newMatch: MatchRecord = {
           id: `${Date.now()}-${Math.random()}`,
           timestamp: Date.now(),
-          opponent,
-          result,
+          winner: result === "win" ? playerName : opponent,
+          loser: result === "win" ? opponent : playerName,
           finalScore,
           bestOf,
           duration,
@@ -105,11 +106,14 @@ export function useMatchHistory(playerName: string) {
     (opponentName: string) => {
       if (!stats) return null;
 
+      // Filter matches involving the opponent
       const matches = stats.matchHistory.filter(
-        (m) => m.opponent === opponentName
+        (m) => m.winner === opponentName || m.loser === opponentName
       );
-      const wins = matches.filter((m) => m.result === "win").length;
-      const losses = matches.filter((m) => m.result === "lose").length;
+
+      // For the current player, wins are matches where they are the winner
+      const wins = matches.filter((m) => m.winner === playerName).length;
+      const losses = matches.filter((m) => m.loser === playerName).length;
 
       return {
         totalMatches: matches.length,
@@ -119,7 +123,7 @@ export function useMatchHistory(playerName: string) {
         recentMatches: matches.slice(0, 10),
       };
     },
-    [stats]
+    [stats, playerName]
   );
 
   return {
