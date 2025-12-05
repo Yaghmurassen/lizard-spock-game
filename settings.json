@@ -1,0 +1,10 @@
+{
+  "window.zoomLevel": -0.2,
+  "editor.fontSize": 13,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "github.copilot.chat.summarizeAgentConversationHistory.enabled": false
+}
