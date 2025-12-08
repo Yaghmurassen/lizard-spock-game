@@ -135,7 +135,7 @@ export const RoundResultScreen: React.FC<RoundResultScreenProps> = ({
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", delay: 0.3 }}
-            className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-center py-8 rounded-lg mb-6"
+            className="bg-linear-to-r from-yellow-400 to-orange-500 text-white text-center py-8 rounded-lg mb-6"
           >
             <h1 className="text-5xl font-bold mb-2">{matchWinnerText}</h1>
             <p className="text-xl">Match Complete!</p>

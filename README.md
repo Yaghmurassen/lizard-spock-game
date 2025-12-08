@@ -2,7 +2,7 @@
 
 A full-featured Next.js application using Page Router, TypeScript, Tailwind CSS, Socket.io for real-time communication, and comprehensive testing setup.
 
-[text](https://lizard-spock-game-production.up.railway.app/)
+[https://lizard-spock-game-production.up.railway.app/](https://lizard-spock-game-production.up.railway.app/)
 
 ## Features
 
