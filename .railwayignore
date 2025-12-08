@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.vercel
+*.log
+.env.local
+.DS_Store
+coverage
+.vscode
+*.test.ts
+*.test.tsx
+__tests__

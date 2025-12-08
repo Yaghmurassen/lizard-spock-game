@@ -40,12 +40,12 @@ export const Game: React.FC = () => {
   const opponentName =
     playerNumber === 1 ? playerNames.player2 : playerNames.player1;
 
-  console.log("🎮 Game Debug:", {
-    myPlayerName,
-    playerNumber,
-    playerNames,
-    opponentName,
-  });
+  // console.log("🎮 Game Debug:", {
+  //   myPlayerName,
+  //   playerNumber,
+  //   playerNames,
+  //   opponentName,
+  // });
 
   const { rivalryStats, saveMatch, getScoreString, hasHistory } =
     useRivalryStats(myPlayerName, opponentName);

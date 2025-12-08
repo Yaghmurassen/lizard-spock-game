@@ -48,7 +48,17 @@ interface RoomState {
   startTime?: number; // Timestamp de début du match
 }
 
-const rooms = new Map<string, RoomState>();
+// Use global to persist rooms across hot-reloads in development
+const globalForRooms = global as typeof globalThis & {
+  rooms?: Map<string, RoomState>;
+};
+
+if (!globalForRooms.rooms) {
+  console.log("🔧 Initializing global rooms Map");
+  globalForRooms.rooms = new Map<string, RoomState>();
+}
+
+const rooms = globalForRooms.rooms;
 
 const SocketHandler = (req: NextApiRequest, res: NextApiResponseServerIO) => {
   if (!res.socket.server.io) {
@@ -61,6 +71,10 @@ const SocketHandler = (req: NextApiRequest, res: NextApiResponseServerIO) => {
 
     io.on("connection", (socket) => {
       console.log("Client connected:", socket.id);
+      console.log(`📊 Current rooms in memory: ${rooms.size}`);
+      if (rooms.size > 0) {
+        console.log(`   Room IDs: ${Array.from(rooms.keys()).join(", ")}`);
+      }
 
       // Create new room
       socket.on("create-room", (bestOf?: 3 | 5) => {
